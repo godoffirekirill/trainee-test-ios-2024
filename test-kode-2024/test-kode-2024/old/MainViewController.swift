@@ -26,7 +26,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
 
         setupUI()
-        fetchData()
+   //     fetchData()
     }
 
     private func setupUI() {
@@ -75,20 +75,20 @@ class MainViewController: UIViewController, UICollectionViewDelegate {
     }
 
 
-   private func fetchData() {
-        // Trigger the data fetching in the ViewModel
-        viewModel.fetchData { [weak self] result in
-            switch result {
-            case .success(let data):
-                // Handle the fetched data
-                print("Fetched data: \(data)")
-                // Reload UI or update any necessary components
-            case .failure(let error):
-                // Handle the error
-                print("Error fetching data: \(error)")
-            }
-        }
-    }
+//   private func fetchData() {
+//        // Trigger the data fetching in the ViewModel
+//        viewModel.fetchData { [weak self] result in
+//            switch result {
+//            case .success(let data):
+//                // Handle the fetched data
+//                print("Fetched data: \(data)")
+//                // Reload UI or update any necessary components
+//            case .failure(let error):
+//                // Handle the error
+//                print("Error fetching data: \(error)")
+//            }
+//        }
+//    }
 
     @objc private func filterButtonTapped() {
         // Implement logic to show bottom sheet for filtering
