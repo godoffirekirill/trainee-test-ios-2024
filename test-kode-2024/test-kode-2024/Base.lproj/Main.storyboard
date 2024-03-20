@@ -126,7 +126,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="hA5-Bb-eeZ"/>
                                 </constraints>
@@ -215,6 +215,8 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="jj6-F3-572" id="AHD-mx-toD"/>
+                        <outlet property="activityIndicatorHeightViewConstraint" destination="hA5-Bb-eeZ" id="0t9-gy-R4K"/>
+                        <outlet property="activityIndicatorView" destination="aJE-qe-JQ4" id="R0w-Dv-QW8"/>
                         <outlet property="employeeTableView" destination="YDT-vd-qox" id="j9I-1Z-JdL"/>
                         <outlet property="positionFilterCollectionView" destination="Iet-NS-MVc" id="ew8-mL-IMY"/>
                         <outlet property="searchBar" destination="cfD-aL-Efd" id="IzU-2n-AwO"/>
@@ -237,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tk7-xL-0Vo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1445" y="31"/>
+            <point key="canvasLocation" x="2245" y="114"/>
         </scene>
     </scenes>
     <resources>
@@ -246,9 +248,6 @@
         </systemColor>
         <systemColor name="systemCyanColor">
             <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -11,14 +11,24 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var employeeTableView: UITableView!
     
+    @IBOutlet weak var activityIndicatorView: UIView!
+    @IBOutlet weak var activityIndicatorHeightViewConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var positionFilterCollectionView: UICollectionView!
+    
      @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
+    var isLoadingData = false
+    var previousContentOffset: CGFloat = 0
+
 
     var viewModel = ViewModel()
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            
+
             
             employeeTableView.delegate = self
             employeeTableView.dataSource = self
@@ -33,6 +43,9 @@ class ViewController: UIViewController {
         
     func fetchData() {
         // Trigger the data fetching in the ViewModel
+        animateActivityIndicator(true)
+        activityIndicatorHeightViewConstraint.constant = 44
+
         viewModel.fetchData { [weak self] result in
             switch result {
             case .success(let data):
@@ -44,12 +57,16 @@ class ViewController: UIViewController {
                     // Select the "All" tab after reloading the collection view
                     if let collectionView = self?.positionFilterCollectionView {
                         self?.collectionView(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+                        self?.activityIndicatorHeightViewConstraint.constant = 0
+
                     }
                 }
             case .failure(let error):
                 // Handle the error
                 print("Error fetching data: \(error)")
             }
+            self?.animateActivityIndicator(false)
+
         }
     }
 
@@ -155,3 +172,48 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return CGSize(width: size.width + 20, height: collectionView.frame.size.height)
         }
     }
+
+extension ViewController {
+    func animateActivityIndicator(_ animate: Bool) {
+        DispatchQueue.main.async {
+            if animate {
+                self.activityIndicator.startAnimating()
+            } else {
+                self.activityIndicator.stopAnimating()
+            }
+        }
+    }
+}
+
+
+
+extension ViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.contentSize.height > scrollView.bounds.height else {
+            // Do not show indicator if the content fits in the table view
+            return
+        }
+        
+        let topOffset = scrollView.contentOffset.y
+        
+        // Check if the table view is scrolled above its content and not already loading data
+        if topOffset <= 0 && topOffset < previousContentOffset && !isLoadingData {
+            // Table view scrolled above content, fetch more data and show the top activity indicator
+            animateActivityIndicator(true) // Show the activity indicator
+            fetchData()
+        } else {
+            // Hide the top activity indicator if data is not being fetched
+            animateActivityIndicator(false)
+        }
+        
+        // Update previousContentOffset
+        previousContentOffset = topOffset
+    }
+}
+
+
+
+
+
+
