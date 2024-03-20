@@ -14,6 +14,7 @@
 		ED8D624C2B9A26C00017EDBD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D624B2B9A26C00017EDBD /* ViewModel.swift */; };
 		ED8D62502B9CA75B0017EDBD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D624F2B9CA75B0017EDBD /* MainViewController.swift */; };
 		ED8D62542B9CBD4F0017EDBD /* CustomProfessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D62532B9CBD4E0017EDBD /* CustomProfessionCell.swift */; };
+		EDB957002BAB371A00390A95 /* EmployeeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB956FF2BAB371A00390A95 /* EmployeeProfileViewController.swift */; };
 		EDC3FE2B2B99EBAA00521043 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3FE2A2B99EBAA00521043 /* AppDelegate.swift */; };
 		EDC3FE2D2B99EBAA00521043 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3FE2C2B99EBAA00521043 /* SceneDelegate.swift */; };
 		EDC3FE2F2B99EBAA00521043 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3FE2E2B99EBAA00521043 /* ViewController.swift */; };
@@ -52,6 +53,7 @@
 		ED8D624B2B9A26C00017EDBD /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		ED8D624F2B9CA75B0017EDBD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		ED8D62532B9CBD4E0017EDBD /* CustomProfessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProfessionCell.swift; sourceTree = "<group>"; };
+		EDB956FF2BAB371A00390A95 /* EmployeeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeProfileViewController.swift; sourceTree = "<group>"; };
 		EDC3FE272B99EBAA00521043 /* test-kode-2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "test-kode-2024.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC3FE2A2B99EBAA00521043 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDC3FE2C2B99EBAA00521043 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				ED8D624B2B9A26C00017EDBD /* ViewModel.swift */,
 				ED8D62452B9A259D0017EDBD /* ClassBindable.swift */,
 				EDC3FE302B99EBAA00521043 /* Main.storyboard */,
+				EDB956FF2BAB371A00390A95 /* EmployeeProfileViewController.swift */,
 				EDC3FE332B99EBAC00521043 /* Assets.xcassets */,
 				EDC3FE352B99EBAC00521043 /* LaunchScreen.storyboard */,
 				EDC3FE382B99EBAC00521043 /* Info.plist */,
@@ -307,6 +310,7 @@
 				ED8D62542B9CBD4F0017EDBD /* CustomProfessionCell.swift in Sources */,
 				ED8D62462B9A259D0017EDBD /* ClassBindable.swift in Sources */,
 				ED8D62482B9A266D0017EDBD /* APIManager.swift in Sources */,
+				EDB957002BAB371A00390A95 /* EmployeeProfileViewController.swift in Sources */,
 				EDC3FE2B2B99EBAA00521043 /* AppDelegate.swift in Sources */,
 				EDF790E82BA31EDD00FD9B7F /* EmployeeTableViewCell.swift in Sources */,
 				EDC3FE2D2B99EBAA00521043 /* SceneDelegate.swift in Sources */,

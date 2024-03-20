@@ -116,6 +116,27 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.row < viewModel.filteredData.count else {
+            return
+        }
+        
+        let selectedItem = viewModel.filteredData[indexPath.row] // Use Item instead of Employee
+        
+        // Instantiate EmployeeProfileViewController from storyboard
+        guard let employeeProfileVC = storyboard?.instantiateViewController(withIdentifier: "EmployeeProfileViewController") as? EmployeeProfileViewController else {
+            return
+        }
+        
+        // Pass data to the EmployeeProfileViewController
+        employeeProfileVC.item = selectedItem // Use item instead of employee
+        
+        // Push the EmployeeProfileViewController onto the navigation stack
+        navigationController?.pushViewController(employeeProfileVC, animated: true)
+        
+        // Deselect the selected row
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
 
 
