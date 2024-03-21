@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED23B30C2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED23B30B2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.xib */; };
+		ED23B30D2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED23B30A2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.swift */; };
 		ED58AC3D2B9CE17D0006E12F /* EmployeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED58AC3C2B9CE17D0006E12F /* EmployeeCell.swift */; };
 		ED8D62462B9A259D0017EDBD /* ClassBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D62452B9A259D0017EDBD /* ClassBindable.swift */; };
 		ED8D62482B9A266D0017EDBD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D62472B9A266D0017EDBD /* APIManager.swift */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ED23B30A2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadingTableViewCell.swift; sourceTree = "<group>"; };
+		ED23B30B2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonLoadingTableViewCell.xib; sourceTree = "<group>"; };
 		ED58AC3C2B9CE17D0006E12F /* EmployeeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCell.swift; sourceTree = "<group>"; };
 		ED8D62452B9A259D0017EDBD /* ClassBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassBindable.swift; sourceTree = "<group>"; };
 		ED8D62472B9A266D0017EDBD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 				ED8D62452B9A259D0017EDBD /* ClassBindable.swift */,
 				EDC3FE302B99EBAA00521043 /* Main.storyboard */,
 				EDB956FF2BAB371A00390A95 /* EmployeeProfileViewController.swift */,
+				ED23B30B2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.xib */,
 				EDC3FE332B99EBAC00521043 /* Assets.xcassets */,
 				EDC3FE352B99EBAC00521043 /* LaunchScreen.storyboard */,
 				EDC3FE382B99EBAC00521043 /* Info.plist */,
@@ -169,6 +174,7 @@
 			children = (
 				EDF790EF2BA83B4000FD9B7F /* DepartmentCollectionViewCell.swift */,
 				EDF790E72BA31EDD00FD9B7F /* EmployeeTableViewCell.swift */,
+				ED23B30A2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -279,6 +285,7 @@
 			files = (
 				EDC3FE372B99EBAC00521043 /* LaunchScreen.storyboard in Resources */,
 				EDC3FE342B99EBAC00521043 /* Assets.xcassets in Resources */,
+				ED23B30C2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.xib in Resources */,
 				EDC3FE322B99EBAA00521043 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +316,7 @@
 				EDC3FE2F2B99EBAA00521043 /* ViewController.swift in Sources */,
 				ED8D62542B9CBD4F0017EDBD /* CustomProfessionCell.swift in Sources */,
 				ED8D62462B9A259D0017EDBD /* ClassBindable.swift in Sources */,
+				ED23B30D2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.swift in Sources */,
 				ED8D62482B9A266D0017EDBD /* APIManager.swift in Sources */,
 				EDB957002BAB371A00390A95 /* EmployeeProfileViewController.swift in Sources */,
 				EDC3FE2B2B99EBAA00521043 /* AppDelegate.swift in Sources */,
