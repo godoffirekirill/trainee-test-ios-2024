@@ -27,7 +27,9 @@ class ViewController: UIViewController {
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            
+            var isLoadingData = false
+
+            employeeTableView.register(UINib(nibName: "SkeletonLoadingTableViewCell", bundle: nil), forCellReuseIdentifier: "SkeletonLoadingTableViewCell")
 
             
             employeeTableView.delegate = self
@@ -42,6 +44,8 @@ class ViewController: UIViewController {
         }
         
     func fetchData() {
+        isLoadingData = true
+
         // Trigger the data fetching in the ViewModel
         animateActivityIndicator(true)
         activityIndicatorHeightViewConstraint.constant = 44
@@ -50,7 +54,7 @@ class ViewController: UIViewController {
             switch result {
             case .success(let data):
                 // Handle the fetched data
-                print("Fetched data: \(data)")
+              //  print("Fetched data: \(data)")
                 // Reload collection view
                 DispatchQueue.main.async {
                     self?.positionFilterCollectionView.reloadData()
@@ -60,13 +64,16 @@ class ViewController: UIViewController {
                         self?.activityIndicatorHeightViewConstraint.constant = 0
 
                     }
+                    
                 }
+                
             case .failure(let error):
                 // Handle the error
                 print("Error fetching data: \(error)")
+                self?.isLoadingData = false
             }
             self?.animateActivityIndicator(false)
-
+            self?.isLoadingData = false
         }
     }
 
@@ -74,48 +81,64 @@ class ViewController: UIViewController {
     }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.filteredData.count
-    }
+        if isLoadingData {
+             // Return a placeholder value (e.g., 1) to indicate that data is loading
+             return 10
+         } else {
+             // Return the actual count of filtered data
+             return viewModel.filteredData.count
+         }    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EmployeeTableViewCell", for: indexPath) as! EmployeeTableViewCell
-        
-        guard indexPath.row < viewModel.filteredData.count else {
-            // Return a default cell if index is out of bounds
+        if isLoadingData {
+            // Return instances of your skeleton loading cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SkeletonLoadingTableViewCell", for: indexPath) as! SkeletonLoadingTableViewCell
+            // Configure skeleton loading cell if needed
             return cell
-        }
-        
-        let employee = viewModel.filteredData[indexPath.row]
-        
-        let fullName = "\(employee.firstName) \(employee.lastName)"
-        
-        // Check if nameLabel is not nil before assigning a value
-        if let nameLabel = cell.nameLabel {
-            nameLabel.text = fullName
-        }
-        
-        // Check if positionLabel is not nil before assigning a value
-        if let positionLabel = cell.positionLabel {
-            positionLabel.text = employee.position
-        }
-        
-        // Check if avatarURL is not an empty string
-        if !employee.avatarURL.isEmpty, let imageURL = URL(string: employee.avatarURL) {
-            DispatchQueue.global().async {
-                if let imageData = try? Data(contentsOf: imageURL) {
-                    DispatchQueue.main.async {
-                        // Check if avatarImageView is not nil before setting its image
-                        if let avatarImageView = cell.avatarImageView {
-                            avatarImageView.image = UIImage(data: imageData)
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EmployeeTableViewCell", for: indexPath) as! EmployeeTableViewCell
+            
+            guard indexPath.row < viewModel.filteredData.count else {
+                // Return a default cell if index is out of bounds
+                return cell
+            }
+            
+            let employee = viewModel.filteredData[indexPath.row]
+            
+            let fullName = "\(employee.firstName) \(employee.lastName)"
+            
+            // Check if nameLabel is not nil before assigning a value
+            if let nameLabel = cell.nameLabel {
+                nameLabel.text = fullName
+            }
+            
+            // Check if positionLabel is not nil before assigning a value
+            if let positionLabel = cell.positionLabel {
+                positionLabel.text = employee.position
+            }
+            
+            // Check if avatarURL is not an empty string
+            if !employee.avatarURL.isEmpty, let imageURL = URL(string: employee.avatarURL) {
+                DispatchQueue.global().async {
+                    if let imageData = try? Data(contentsOf: imageURL) {
+                        DispatchQueue.main.async {
+                            // Check if avatarImageView is not nil before setting its image
+                            if let avatarImageView = cell.avatarImageView {
+                                avatarImageView.image = UIImage(data: imageData)
+                            }
                         }
                     }
                 }
             }
+            
+            return cell
         }
-        
-        return cell
     }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row < viewModel.filteredData.count else {
             return

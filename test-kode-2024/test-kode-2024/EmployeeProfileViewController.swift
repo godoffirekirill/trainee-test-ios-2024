@@ -17,11 +17,18 @@ class EmployeeProfileViewController: UIViewController {
     @IBOutlet weak var yearsLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     
+    @IBOutlet weak var phoneView: UIView!
     
     var item: Item?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let phoneLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(phoneLabelTapped))
+        phoneView.addGestureRecognizer(phoneLabelTapGesture)
+        phoneView.isUserInteractionEnabled = true
+        
+        
         
         // Check if item is not nil
         guard let item = item else {
@@ -49,8 +56,8 @@ class EmployeeProfileViewController: UIViewController {
         
         // Set birthday
         if let date = formatDate(from: item.birthday) {
-                    birthdayLabel.text = date
-                }
+            birthdayLabel.text = date
+        }
         
         if let years = calculateAge(from: item.birthday) {
             yearsLabel.text = "\(years) years"
@@ -58,17 +65,31 @@ class EmployeeProfileViewController: UIViewController {
         
         
         // Set phone number
-        phoneLabel.text = formatPhoneNumber(item.phone)
+        let formattedPhoneNumber = formatPhoneNumberForDisplay(item.phone)
+        phoneLabel.text = formattedPhoneNumber
+        
+        
+        
+        
+        
+        
     }
-    
-    
-    
     @IBAction func backButton(_ sender: UIButton) {
         
         self.navigationController?.popToRootViewController(animated: true)
     }
     
+    
+    
+    @objc func phoneLabelTapped() {
+        let phoneNumberForCall = formatPhoneNumberForCall(item!.phone)
+        callPhoneNumber(phoneNumberForCall)
+    }
+
+    
+    
 }
+
 
 // Function to format date
 func formatDate(from dateString: String) -> String? {
@@ -98,21 +119,36 @@ func calculateAge(from dateString: String) -> Int? {
     return nil
 }
 
-func formatPhoneNumber(_ phoneNumber: String) -> String {
-    // Remove any non-numeric characters from the phone number
-    let cleanedPhoneNumber = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+func formatPhoneNumberForDisplay(_ phoneNumber: String) -> String {
+    let cleanedPhoneNumber = phoneNumber.replacingOccurrences(of: "-", with: "")
     
-    // Check if the cleaned phone number has enough digits
     guard cleanedPhoneNumber.count == 10 else {
         return phoneNumber // Return the original phone number if it doesn't have enough digits
     }
     
-    // Format the phone number
     let areaCode = String(cleanedPhoneNumber.prefix(3))
     let firstPart = String(cleanedPhoneNumber.dropFirst(3).prefix(3))
     let secondPart = String(cleanedPhoneNumber.dropFirst(6).prefix(2))
     let thirdPart = String(cleanedPhoneNumber.dropFirst(8))
     
-    return "+7 (\(areaCode)) \(firstPart) \(secondPart) \(thirdPart)"
+    return "+7 (\(areaCode)) \(firstPart)-\(secondPart)-\(thirdPart)"
+}
+
+func formatPhoneNumberForCall(_ phoneNumber: String) -> String {
+    let cleanedPhoneNumber = phoneNumber.replacingOccurrences(of: "-", with: "")
+    return "+7\(cleanedPhoneNumber)"
+}
+
+
+
+func callPhoneNumber(_ cleanedPhoneNumber: String) {
+
+    
+    guard let phoneURL = URL(string: "tel://\(cleanedPhoneNumber)") else {
+         print("Invalid phone number URL: tel://\(cleanedPhoneNumber)")
+         return // Invalid URL
+     }
+     print("Calling phone number: \(phoneURL)")
+     UIApplication.shared.open(phoneURL)
 }
 

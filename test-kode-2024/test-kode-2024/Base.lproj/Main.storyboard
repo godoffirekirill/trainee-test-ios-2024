@@ -399,6 +399,7 @@
                         <outlet property="nameEmployeeLabel" destination="pij-lo-2Xq" id="fCi-fE-TxN"/>
                         <outlet property="namePositionLabel" destination="VhA-IC-i66" id="plZ-Ib-yur"/>
                         <outlet property="phoneLabel" destination="p58-Bn-Ipg" id="dyn-7T-efW"/>
+                        <outlet property="phoneView" destination="wUr-gw-HTc" id="kql-Cr-eva"/>
                         <outlet property="yearsLabel" destination="uI3-qb-kjq" id="5rp-Oi-N4l"/>
                     </connections>
                 </viewController>
