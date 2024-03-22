@@ -59,7 +59,10 @@ class ViewController: UIViewController {
     func fetchData() {
         isLoadingData = true
         animateActivityIndicator(true)
-        activityIndicatorHeightViewConstraint.constant = 44
+        UIView.animate(withDuration: 0.3) {
+            self.activityIndicatorHeightViewConstraint.constant = 44
+            self.view.layoutIfNeeded() // Update the layout immediately
+        }
 
         viewModel.fetchData { [weak self] result in
             DispatchQueue.main.async {
@@ -70,7 +73,11 @@ class ViewController: UIViewController {
                     // Select the "All" tab after reloading the collection view
                     if let collectionView = self?.positionFilterCollectionView {
                         self?.collectionView(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
-                        self?.activityIndicatorHeightViewConstraint.constant = 0
+                        UIView.animate(withDuration: 0.3) {
+                            self?.activityIndicatorHeightViewConstraint.constant = 0
+                            self?.view.layoutIfNeeded() // Update the layout immediately
+                        }
+
                     }
                 case .failure(let error):
                               // Handle the error
