@@ -191,18 +191,22 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             // Check if avatarURL is not an empty string
-            if !employee.avatarURL.isEmpty, let imageURL = URL(string: employee.avatarURL) {
-                DispatchQueue.global().async {
-                    if let imageData = try? Data(contentsOf: imageURL) {
-                        DispatchQueue.main.async {
-                            // Check if avatarImageView is not nil before setting its image
-                            if let avatarImageView = cell.avatarImageView {
-                                avatarImageView.image = UIImage(data: imageData)
+            if let avatarImageView = cell.avatarImageView {
+                if employee.avatarURL.isEmpty, let stubImage = UIImage(named: "stub") {
+                    avatarImageView.image = stubImage
+                } else {
+                    if let imageURL = URL(string: employee.avatarURL) {
+                        DispatchQueue.global().async {
+                            if let imageData = try? Data(contentsOf: imageURL) {
+                                DispatchQueue.main.async {
+                                    avatarImageView.image = UIImage(data: imageData)
+                                }
                             }
                         }
                     }
                 }
             }
+
             
             return cell
         }
