@@ -9,12 +9,12 @@ import UIKit
 
 class LoadErrorView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var textView: UITextView!
+    static func instanceFromNib() -> LoadErrorView {
+        return UINib(nibName: "LoadErrorView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! LoadErrorView
     }
-    */
-
-}
+    
+    func configure(text: String) {
+        //   let labelText = "I can't update the data.\nCheck your internet connection."
+        textView.text = text
+       }}

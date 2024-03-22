@@ -2,6 +2,9 @@ import Foundation
 
 // Custom error type conforming to Error and LocalizedError
 
+
+
+
 class APIManager {
     static let shared = APIManager()
 

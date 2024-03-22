@@ -7,6 +7,9 @@
 
 import UIKit
 
+
+
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var employeeTableView: UITableView!
@@ -27,7 +30,7 @@ class ViewController: UIViewController {
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            var isLoadingData = false
+        //    var isLoadingData = false
 
             employeeTableView.register(UINib(nibName: "SkeletonLoadingTableViewCell", bundle: nil), forCellReuseIdentifier: "SkeletonLoadingTableViewCell")
 
@@ -42,40 +45,82 @@ class ViewController: UIViewController {
             viewModel.filterData(with: "")
 
         }
+    @IBAction func showSortOptionsButtonPressed(_ sender: UIButton) {
+        
+        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "SortOptionsViewController") as? SortOptionsViewController else {return}
+        controller.delegate = self
+        self.present(controller,animated: true,completion: nil)
+        
+    }
+    
+    
+    
         
     func fetchData() {
         isLoadingData = true
-
-        // Trigger the data fetching in the ViewModel
         animateActivityIndicator(true)
         activityIndicatorHeightViewConstraint.constant = 44
 
         viewModel.fetchData { [weak self] result in
-            switch result {
-            case .success(let data):
-                // Handle the fetched data
-              //  print("Fetched data: \(data)")
-                // Reload collection view
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    // Handle the fetched data
                     self?.positionFilterCollectionView.reloadData()
                     // Select the "All" tab after reloading the collection view
                     if let collectionView = self?.positionFilterCollectionView {
                         self?.collectionView(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
                         self?.activityIndicatorHeightViewConstraint.constant = 0
-
                     }
-                    
-                }
-                
-            case .failure(let error):
-                // Handle the error
-                print("Error fetching data: \(error)")
+                case .failure(let error):
+                              // Handle the error
+                              print("Error fetching data: \(error)")
+                              self?.isLoadingData = false
+
+                              if let apiError = error as? APIError {
+                                  switch apiError.key {
+                                  case "Invalid URL":
+                                      // Handle No Data APIError
+                                      self?.navigateToCriticalErrorViewController()
+                                  case "Network Error":
+                                      // Handle Decoding Error APIError
+                                      self?.ErrorViewController()
+                                  case "No Data":
+                                      // Handle Invalid URL APIError
+                                      self?.navigateToCriticalErrorViewController()
+                                  case "Decoding Error":
+                                      // Handle Invalid URL APIError
+                                      self?.navigateToCriticalErrorViewController()
+                                  default:
+                                      // Handle Network Error APIError or any other error
+                                      self?.navigateToCriticalErrorViewController()
+                                  }
+                              }
+                          }
+
+                // Stop activity indicator animation
+                self?.animateActivityIndicator(false)
                 self?.isLoadingData = false
             }
-            self?.animateActivityIndicator(false)
-            self?.isLoadingData = false
         }
     }
+
+    private func navigateToCriticalErrorViewController() {
+        // Navigate to CriticalErrorViewController
+        guard let criticalErrorViewController = storyboard?.instantiateViewController(withIdentifier: "CriticalErrorViewController") as? CriticalErrorViewController else {
+            return
+        }
+     //   criticalErrorViewController.error = error // Pass the error to CriticalErrorViewController if needed
+        navigationController?.pushViewController(criticalErrorViewController, animated: true)
+    }
+    private func ErrorViewController() {
+      //  let loadErrorVC = LoadErrorViewController(nibName: "LoadErrorViewController", bundle: nil)
+        let ErrorView = LoadErrorView.instanceFromNib()
+        ErrorView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 131)
+        ErrorView.configure(text: "I can't update the data.\nCheck your internet connection.")
+        view.addSubview(ErrorView)
+    }
+
 
 
     }
@@ -256,7 +301,20 @@ extension ViewController: UIScrollViewDelegate {
     }
 }
 
+extension ViewController: SortOptionsDelegate {
+    func didSelectSortOption(option: SortOption) {
+        switch option {
+        case .birthday:
+            viewModel.sortBirthday()
+            employeeTableView.reloadData()
 
+        case .alphabetical:
+            viewModel.sortAlphabetically()
+            employeeTableView.reloadData()
+
+        }
+    }
+}
 
 
 
