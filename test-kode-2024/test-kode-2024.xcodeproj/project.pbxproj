@@ -10,6 +10,9 @@
 		ED23B30C2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED23B30B2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.xib */; };
 		ED23B30D2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED23B30A2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.swift */; };
 		ED23B30F2BACBE7A00CE1A1A /* SortOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED23B30E2BACBE7A00CE1A1A /* SortOptionsViewController.swift */; };
+		ED23B3112BAD888100CE1A1A /* CriticalErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED23B3102BAD888100CE1A1A /* CriticalErrorViewController.swift */; };
+		ED23B3172BADB75500CE1A1A /* LoadErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED23B3162BADB75500CE1A1A /* LoadErrorView.xib */; };
+		ED23B3192BADB77400CE1A1A /* LoadErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED23B3182BADB77300CE1A1A /* LoadErrorView.swift */; };
 		ED58AC3D2B9CE17D0006E12F /* EmployeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED58AC3C2B9CE17D0006E12F /* EmployeeCell.swift */; };
 		ED8D62462B9A259D0017EDBD /* ClassBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D62452B9A259D0017EDBD /* ClassBindable.swift */; };
 		ED8D62482B9A266D0017EDBD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D62472B9A266D0017EDBD /* APIManager.swift */; };
@@ -52,6 +55,9 @@
 		ED23B30A2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadingTableViewCell.swift; sourceTree = "<group>"; };
 		ED23B30B2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonLoadingTableViewCell.xib; sourceTree = "<group>"; };
 		ED23B30E2BACBE7A00CE1A1A /* SortOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionsViewController.swift; sourceTree = "<group>"; };
+		ED23B3102BAD888100CE1A1A /* CriticalErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriticalErrorViewController.swift; sourceTree = "<group>"; };
+		ED23B3162BADB75500CE1A1A /* LoadErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadErrorView.xib; sourceTree = "<group>"; };
+		ED23B3182BADB77300CE1A1A /* LoadErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadErrorView.swift; sourceTree = "<group>"; };
 		ED58AC3C2B9CE17D0006E12F /* EmployeeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCell.swift; sourceTree = "<group>"; };
 		ED8D62452B9A259D0017EDBD /* ClassBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassBindable.swift; sourceTree = "<group>"; };
 		ED8D62472B9A266D0017EDBD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -130,11 +136,14 @@
 				EDC3FE2A2B99EBAA00521043 /* AppDelegate.swift */,
 				EDC3FE2C2B99EBAA00521043 /* SceneDelegate.swift */,
 				EDC3FE2E2B99EBAA00521043 /* ViewController.swift */,
+				ED23B3162BADB75500CE1A1A /* LoadErrorView.xib */,
+				ED23B3182BADB77300CE1A1A /* LoadErrorView.swift */,
 				ED8D62472B9A266D0017EDBD /* APIManager.swift */,
 				ED8D62492B9A269F0017EDBD /* DataModel.swift */,
 				ED8D624B2B9A26C00017EDBD /* ViewModel.swift */,
 				ED8D62452B9A259D0017EDBD /* ClassBindable.swift */,
 				EDC3FE302B99EBAA00521043 /* Main.storyboard */,
+				ED23B3102BAD888100CE1A1A /* CriticalErrorViewController.swift */,
 				ED23B30E2BACBE7A00CE1A1A /* SortOptionsViewController.swift */,
 				EDB956FF2BAB371A00390A95 /* EmployeeProfileViewController.swift */,
 				ED23B30B2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.xib */,
@@ -288,6 +297,7 @@
 			files = (
 				EDC3FE372B99EBAC00521043 /* LaunchScreen.storyboard in Resources */,
 				EDC3FE342B99EBAC00521043 /* Assets.xcassets in Resources */,
+				ED23B3172BADB75500CE1A1A /* LoadErrorView.xib in Resources */,
 				ED23B30C2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.xib in Resources */,
 				EDC3FE322B99EBAA00521043 /* Main.storyboard in Resources */,
 			);
@@ -314,10 +324,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED23B3112BAD888100CE1A1A /* CriticalErrorViewController.swift in Sources */,
 				EDF790F02BA83B4000FD9B7F /* DepartmentCollectionViewCell.swift in Sources */,
 				ED58AC3D2B9CE17D0006E12F /* EmployeeCell.swift in Sources */,
 				EDC3FE2F2B99EBAA00521043 /* ViewController.swift in Sources */,
 				ED8D62542B9CBD4F0017EDBD /* CustomProfessionCell.swift in Sources */,
+				ED23B3192BADB77400CE1A1A /* LoadErrorView.swift in Sources */,
 				ED8D62462B9A259D0017EDBD /* ClassBindable.swift in Sources */,
 				ED23B30D2BAC839000CE1A1A /* SkeletonLoadingTableViewCell.swift in Sources */,
 				ED8D62482B9A266D0017EDBD /* APIManager.swift in Sources */,
