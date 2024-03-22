@@ -120,7 +120,24 @@ class ViewController: UIViewController {
         ErrorView.configure(text: "I can't update the data.\nCheck your internet connection.")
         view.addSubview(ErrorView)
     }
+    
+    private func showNothingFoundImage(_ show: Bool) {
+        if show {
+            let nothingFoundView = NothingFoundImageView.instanceFromNib()
+            nothingFoundView.frame = CGRect(x: 0, y: 220, width: view.frame.width, height: 118)
+            nothingFoundView.configure(imageName: "nothing-found")
+            view.addSubview(nothingFoundView)
+        } else {
+            // Remove the "nothing found" image view from the superview
+            view.subviews.forEach { subview in
+                if let nothingFoundView = subview as? NothingFoundImageView {
+                    nothingFoundView.removeFromSuperview()
+                }
+            }
+        }
+    }
 
+    
 
 
     }
@@ -214,6 +231,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             viewModel.filterData(with: searchText)
             employeeTableView.reloadData()
+            
+            showNothingFoundImage(viewModel.filteredData.isEmpty)
+
         }
     }
 

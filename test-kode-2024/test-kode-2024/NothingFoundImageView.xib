@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="NothingFoundImageView" id="iN0-l3-epB" customClass="NothingFoundImageView" customModule="test_kode_2024" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="393"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ty8-Qe-Hyl">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="393"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="ty8-Qe-Hyl" secondAttribute="height" id="sUg-OF-H8b"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="ty8-Qe-Hyl" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="8Ts-Be-k1W"/>
+                <constraint firstItem="ty8-Qe-Hyl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ShB-mO-Lzt"/>
+                <constraint firstItem="ty8-Qe-Hyl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Vx3-gl-BO2"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="nothingImageView" destination="ty8-Qe-Hyl" id="D2C-rb-Slj"/>
+            </connections>
+            <point key="canvasLocation" x="183.96946564885496" y="-120.77464788732395"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
