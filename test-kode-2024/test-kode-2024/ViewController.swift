@@ -61,6 +61,7 @@ class ViewController: UIViewController {
         animateActivityIndicator(true)
         UIView.animate(withDuration: 0.3) {
             self.activityIndicatorHeightViewConstraint.constant = 44
+            self.isLoadingData = true
             self.view.layoutIfNeeded() // Update the layout immediately
         }
 
@@ -75,6 +76,7 @@ class ViewController: UIViewController {
                         self?.collectionView(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
                         UIView.animate(withDuration: 0.3) {
                             self?.activityIndicatorHeightViewConstraint.constant = 0
+                            self?.isLoadingData = false
                             self?.view.layoutIfNeeded() // Update the layout immediately
                         }
 
@@ -108,6 +110,7 @@ class ViewController: UIViewController {
                 // Stop activity indicator animation
                 self?.animateActivityIndicator(false)
                 self?.isLoadingData = false
+                self?.view.layoutIfNeeded()
             }
         }
     }
